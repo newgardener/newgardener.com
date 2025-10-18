@@ -1,0 +1,11 @@
+name = "jeongwonshin-blog"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".cloudflare/dist"
+
+[site]
+bucket = ".cloudflare/dist"
+
+# Environment variables (if needed)
+# [env.production]
+# vars = { ENVIRONMENT = "production" }
