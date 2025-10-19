@@ -102,7 +102,7 @@ async function getPostMetadataFromFile(slug: string): Promise<PostMetadata | nul
 
     return {
       slug,
-      title: frontmatter.title || 'Untitled',
+      title: frontmatter.title,
       description: frontmatter.description || '',
       date: convertDateToString(frontmatter.date),
       thumbnail: frontmatter.thumbnail,
