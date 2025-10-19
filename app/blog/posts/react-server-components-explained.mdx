@@ -1,0 +1,202 @@
+---
+title: React Server Components Explained
+description: A comprehensive guide to understanding and implementing React Server Components in your Next.js applications.
+date: 2025-01-05
+tags:
+  - React
+  - Next.js
+  - Server Components
+author: Jeongwon Shin
+draft: false
+---
+
+## What are React Server Components?
+
+React Server Components (RSC) represent a paradigm shift in how we build React applications. They allow components to run exclusively on the server, enabling new patterns for data fetching and reducing client-side JavaScript.
+
+## Key Benefits
+
+### Reduced Bundle Size
+
+Server Components don't ship JavaScript to the client, which means:
+
+- Smaller bundle sizes
+- Faster initial page loads
+- Better performance on low-powered devices
+
+### Direct Backend Access
+
+Server Components can directly access backend resources:
+
+```tsx
+// This runs only on the server!
+async function UserProfile({ userId }: { userId: string }) {
+  // Direct database access
+  const user = await db.users.findUnique({
+    where: { id: userId },
+  });
+
+  return (
+    <div>
+      <h1>{user.name}</h1>
+      <p>{user.email}</p>
+    </div>
+  );
+}
+```
+
+### Zero Client Runtime
+
+Dependencies used in Server Components don't add to the client bundle:
+
+```tsx
+import { marked } from 'marked'; // Only runs on server
+import { format } from 'date-fns'; // Won't increase client bundle
+
+export default async function BlogPost({ slug }: { slug: string }) {
+  const post = await getPost(slug);
+  const html = marked(post.content);
+  const date = format(new Date(post.date), 'MMMM dd, yyyy');
+
+  return (
+    <article>
+      <h1>{post.title}</h1>
+      <time>{date}</time>
+      <div dangerouslySetInnerHTML={{ __html: html }} />
+    </article>
+  );
+}
+```
+
+## Server vs Client Components
+
+### When to Use Server Components
+
+Use Server Components when:
+
+1. You need to fetch data
+2. You're accessing backend resources
+3. You want to keep large dependencies on the server
+4. The component doesn't need interactivity
+
+### When to Use Client Components
+
+Use Client Components when:
+
+```tsx
+'use client'; // This directive marks it as a Client Component
+
+import { useState } from 'react';
+
+export function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <button type="button" onClick={() => setCount(count + 1)}>
+      Count: {count}
+    </button>
+  );
+}
+```
+
+You need:
+- Interactive features (onClick, onChange)
+- Browser APIs (localStorage, geolocation)
+- React hooks (useState, useEffect)
+- Class components
+
+## Composition Patterns
+
+### Passing Server Components to Client Components
+
+You can pass Server Components as children to Client Components:
+
+```tsx
+// ClientWrapper.tsx
+'use client';
+
+export function ClientWrapper({ children }: { children: React.ReactNode }) {
+  return <div className="interactive-wrapper">{children}</div>;
+}
+
+// page.tsx (Server Component)
+export default function Page() {
+  return (
+    <ClientWrapper>
+      <ServerComponent /> {/* This stays on the server! */}
+    </ClientWrapper>
+  );
+}
+```
+
+### Data Fetching Patterns
+
+Parallel data fetching with Server Components:
+
+```tsx
+async function UserData({ userId }: { userId: string }) {
+  const user = await fetchUser(userId);
+  return <div>{user.name}</div>;
+}
+
+async function Posts({ userId }: { userId: string }) {
+  const posts = await fetchPosts(userId);
+  return <ul>{posts.map((p) => <li key={p.id}>{p.title}</li>)}</ul>;
+}
+
+export default function Profile({ userId }: { userId: string }) {
+  return (
+    <div>
+      <Suspense fallback={<Skeleton />}>
+        <UserData userId={userId} />
+      </Suspense>
+      <Suspense fallback={<Skeleton />}>
+        <Posts userId={userId} />
+      </Suspense>
+    </div>
+  );
+}
+```
+
+## Best Practices
+
+### Keep Server-Only Code Secure
+
+Use the `server-only` package to ensure server code never leaks to the client:
+
+```typescript
+import 'server-only';
+
+export async function getSecretKey() {
+  return process.env.SECRET_KEY;
+}
+```
+
+### Optimize Data Fetching
+
+Use React's built-in caching:
+
+```typescript
+import { cache } from 'react';
+
+export const getPost = cache(async (slug: string) => {
+  const post = await db.posts.findUnique({ where: { slug } });
+  return post;
+});
+```
+
+### Handle Loading States
+
+Use Suspense boundaries for better UX:
+
+```tsx
+<Suspense fallback={<LoadingSpinner />}>
+  <AsyncComponent />
+</Suspense>
+```
+
+## Conclusion
+
+React Server Components are a powerful addition to the React ecosystem. They enable new patterns for building faster, more efficient applications while maintaining the component model we love.
+
+Start experimenting with Server Components in your Next.js projects today!

@@ -1,0 +1,84 @@
+---
+title: Getting Started with Next.js 15
+description: Learn about the latest features and improvements in Next.js 15, including React Server Components, improved performance, and new APIs.
+date: 2025-01-15
+thumbnail: /images/nextjs-15.jpg
+tags:
+  - Next.js
+  - React
+  - Web Development
+author: Jeongwon Shin
+draft: false
+---
+
+## Introduction
+
+Next.js 15 brings significant improvements to the React ecosystem with enhanced performance, better developer experience, and powerful new features. In this article, we'll explore what makes Next.js 15 a game-changer for modern web development.
+
+## What's New in Next.js 15
+
+### React Server Components
+
+React Server Components (RSC) are now stable in Next.js 15. This architecture allows you to build components that run exclusively on the server, reducing the JavaScript bundle size sent to the client.
+
+```tsx
+// app/components/ServerComponent.tsx
+async function ServerComponent() {
+  const data = await fetch('https://api.example.com/data');
+  const json = await data.json();
+
+  return (
+    <div>
+      <h1>Server-side Rendered Data</h1>
+      <pre>{JSON.stringify(json, null, 2)}</pre>
+    </div>
+  );
+}
+```
+
+### Improved Performance
+
+Next.js 15 includes several performance optimizations:
+
+- **Faster builds** with improved caching mechanisms
+- **Better tree-shaking** to reduce bundle sizes
+- **Optimized image loading** with automatic WebP conversion
+- **Streaming SSR** for faster initial page loads
+
+### New Turbopack Features
+
+Turbopack, the Rust-based successor to Webpack, is now more stable and includes:
+
+1. Hot Module Replacement (HMR) that's 10x faster
+2. Better error messages and debugging
+3. Improved CSS handling
+
+## Getting Started
+
+To create a new Next.js 15 project, run:
+
+```bash
+npx create-next-app@latest my-app
+cd my-app
+npm run dev
+```
+
+### Project Structure
+
+The App Router introduces a new file-system based routing:
+
+```
+app/
+├── layout.tsx      # Root layout
+├── page.tsx        # Home page
+├── blog/
+│   ├── page.tsx    # Blog listing
+│   └── [slug]/
+│       └── page.tsx # Blog post
+```
+
+## Conclusion
+
+Next.js 15 represents a major step forward in modern web development. With React Server Components, improved performance, and better developer tooling, it's an excellent choice for building production-ready applications.
+
+Try it out in your next project and experience the improvements firsthand!

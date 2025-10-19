@@ -1,0 +1,115 @@
+---
+title: TypeScript Best Practices for 2025
+description: Essential TypeScript patterns and practices for writing type-safe, maintainable code in modern applications.
+date: 2025-01-10
+tags:
+  - TypeScript
+  - JavaScript
+  - Best Practices
+author: Jeongwon Shin
+draft: false
+---
+
+## Introduction
+
+TypeScript has become the de facto standard for building large-scale JavaScript applications. This guide covers essential best practices for writing clean, type-safe TypeScript code.
+
+## Type Safety First
+
+### Use Strict Mode
+
+Always enable strict mode in your `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true
+  }
+}
+```
+
+### Avoid `any` Type
+
+Instead of using `any`, use more specific types:
+
+```typescript
+// Bad
+function processData(data: any) {
+  return data.map((item: any) => item.value);
+}
+
+// Good
+function processData<T extends { value: unknown }>(data: T[]) {
+  return data.map((item) => item.value);
+}
+```
+
+## Advanced Type Patterns
+
+### Discriminated Unions
+
+Use discriminated unions for type-safe state management:
+
+```typescript
+type LoadingState = { status: 'loading' };
+type SuccessState<T> = { status: 'success'; data: T };
+type ErrorState = { status: 'error'; error: Error };
+
+type AsyncState<T> = LoadingState | SuccessState<T> | ErrorState;
+
+function handleState<T>(state: AsyncState<T>) {
+  switch (state.status) {
+    case 'loading':
+      return 'Loading...';
+    case 'success':
+      return state.data;
+    case 'error':
+      return state.error.message;
+  }
+}
+```
+
+### Utility Types
+
+Leverage TypeScript's built-in utility types:
+
+```typescript
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+}
+
+// Public user without password
+type PublicUser = Omit<User, 'password'>;
+
+// Partial update
+type UserUpdate = Partial<User>;
+
+// Read-only user
+type ReadonlyUser = Readonly<User>;
+```
+
+## Function Overloading
+
+Use function overloading for better type inference:
+
+```typescript
+function createElement(tag: 'a'): HTMLAnchorElement;
+function createElement(tag: 'div'): HTMLDivElement;
+function createElement(tag: string): HTMLElement;
+function createElement(tag: string): HTMLElement {
+  return document.createElement(tag);
+}
+
+const anchor = createElement('a'); // Type: HTMLAnchorElement
+```
+
+## Conclusion
+
+Following these TypeScript best practices will help you write more maintainable, type-safe code. Remember to leverage the type system to catch errors at compile time rather than runtime.
+
+Happy coding!
