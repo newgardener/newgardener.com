@@ -14,14 +14,30 @@ code,
 pre,
 kbd,
 samp {
-  font-family: var(--font-geist-mono), "Courier New", monospace;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    Courier New,
+    monospace;
 }
 
 /* Inline code styling (not in code blocks) */
 :not(pre) > code {
   @apply rounded bg-gray-100 px-1.5 py-0.5 font-medium text-gray-800 dark:bg-gray-800 dark:text-gray-200;
-  font-size: 1em;
-  font-family: var(--font-geist-mono), "Courier New", monospace;
+  font-size: calc(1em - 5%);
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    Courier New,
+    monospace;
 }
 
 /* Custom scrollbar */
@@ -65,15 +81,23 @@ pre {
   border-radius: 0.5rem;
   padding: 1rem;
   margin: 1.5rem 0;
-  font-size: 1em;
-  line-height: 1.7;
+  font-size: calc(1em - 5%);
+  line-height: 1.25rem;
   background-color: var(--shiki-light-bg) !important;
 }
 
 pre > code {
   display: grid;
-  font-family: var(--font-geist-mono), "Courier New", monospace;
-  font-size: 1em;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    Courier New,
+    monospace;
+  font-size: calc(1em - 5%);
   color: var(--shiki-light) !important;
   background-color: transparent !important;
 }
@@ -115,7 +139,15 @@ pre > code [data-highlighted-chars] {
 /* Code block title */
 [data-rehype-pretty-code-title] {
   @apply rounded-t-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300;
-  font-family: var(--font-geist-mono), "Courier New", monospace;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    Courier New,
+    monospace;
   margin-top: 1.5rem;
 }
 
