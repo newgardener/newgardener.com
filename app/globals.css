@@ -11,7 +11,16 @@ body {
 }
 
 code,
-pre {
+pre,
+kbd,
+samp {
+  font-family: var(--font-geist-mono), "Courier New", monospace;
+}
+
+/* Inline code styling (not in code blocks) */
+:not(pre) > code {
+  @apply rounded bg-gray-100 px-1.5 py-0.5 font-medium text-gray-800 dark:bg-gray-800 dark:text-gray-200;
+  font-size: 1em;
   font-family: var(--font-geist-mono), "Courier New", monospace;
 }
 
@@ -40,5 +49,78 @@ pre {
 
 /* Smooth transitions */
 * {
-  @apply transition-colors duration-200;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Remove transitions from elements that shouldn't animate */
+*:where(:not(:active):not(:focus):not(:focus-within)) {
+  transition-duration: 150ms;
+}
+
+/* Code block styling for rehype-pretty-code */
+pre {
+  overflow-x: auto;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  font-size: 1em;
+  line-height: 1.7;
+  background-color: var(--shiki-light-bg) !important;
+}
+
+pre > code {
+  display: grid;
+  font-family: var(--font-geist-mono), "Courier New", monospace;
+  font-size: 1em;
+  color: var(--shiki-light) !important;
+  background-color: transparent !important;
+}
+
+/* Apply Shiki syntax highlighting colors */
+pre code span {
+  color: var(--shiki-light);
+}
+
+/* Dark mode support for Shiki */
+.dark pre {
+  background-color: var(--shiki-dark-bg) !important;
+}
+
+.dark pre > code {
+  color: var(--shiki-dark) !important;
+}
+
+.dark pre code span {
+  color: var(--shiki-dark);
+}
+
+pre > code > [data-line] {
+  padding: 0 1rem;
+  border-left: 2px solid transparent;
+}
+
+pre > code > [data-line].highlighted {
+  background-color: rgba(59, 130, 246, 0.1);
+  border-left-color: rgb(59, 130, 246);
+}
+
+pre > code [data-highlighted-chars] {
+  @apply bg-gray-700/50 dark:bg-gray-300/20;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+}
+
+/* Code block title */
+[data-rehype-pretty-code-title] {
+  @apply rounded-t-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300;
+  font-family: var(--font-geist-mono), "Courier New", monospace;
+  margin-top: 1.5rem;
+}
+
+[data-rehype-pretty-code-title] + pre {
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }

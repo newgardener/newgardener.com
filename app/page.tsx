@@ -62,7 +62,7 @@ export default function HomePage() {
               <h3 className="mt-4 text-lg font-semibold text-gray-900 dark:text-gray-100">
                 {post.title}
               </h3>
-              <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">{post.description}</p>
+              <p className="mt-2 text-base text-gray-600 dark:text-gray-400">{post.description}</p>
             </div>
           ))}
         </div>

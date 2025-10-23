@@ -39,8 +39,8 @@ export async function compileMDXContent<TFrontmatter = Record<string, unknown>>(
             rehypePrettyCode,
             {
               theme: {
-                dark: 'github-dark',
-                light: 'github-light',
+                dark: 'houston',
+                light: 'houston',
               },
               keepBackground: true,
               defaultLang: 'plaintext',

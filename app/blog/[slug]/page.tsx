@@ -88,7 +88,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             </h1>
 
             {/* Metadata */}
-            <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+            <div className="flex flex-wrap items-center gap-4 text-base text-gray-600 dark:text-gray-400">
               <div className="flex items-center gap-1.5">
                 <Calendar className="h-4 w-4" />
                 <time dateTime={post.metadata.date}>{formatDate(post.metadata.date)}</time>
@@ -105,7 +105,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 {post.metadata.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-md bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+                    className="rounded-md bg-gray-100 px-3 py-1 text-base font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300"
                   >
                     {tag}
                   </span>
@@ -115,7 +115,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           </header>
 
           {/* MDX Content */}
-          <div className="prose prose-gray max-w-none dark:prose-invert prose-headings:scroll-mt-24 prose-a:text-blue-600 hover:prose-a:text-blue-700 dark:prose-a:text-blue-400 dark:hover:prose-a:text-blue-300">
+          <div className="prose prose-gray max-w-none dark:prose-invert prose-headings:scroll-mt-24 prose-a:text-blue-600 prose-a:transition-colors hover:prose-a:text-blue-700 dark:prose-a:text-blue-400 dark:hover:prose-a:text-blue-300 prose-code:text-gray-800 prose-code:before:content-none prose-code:after:content-none dark:prose-code:text-gray-200">
             {post.content}
           </div>
 

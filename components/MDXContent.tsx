@@ -108,25 +108,13 @@ export const mdxComponents: MDXComponents = {
     </blockquote>
   ),
 
-  // Code
-  code: ({ children, ...props }) => (
-    <code
-      className="rounded-md bg-gray-100 px-1.5 py-0.5 font-mono text-sm text-gray-900 dark:bg-gray-800 dark:text-gray-100"
-      {...props}
-    >
-      {children}
-    </code>
-  ),
+  // Code (inline code with backticks)
+  // Styling is handled in globals.css via :not(pre) > code selector
+  code: ({ children, ...props }) => <code {...props}>{children}</code>,
 
   // Pre (code blocks are handled by rehype-pretty-code)
-  pre: ({ children, ...props }) => (
-    <pre
-      className="my-6 overflow-x-auto rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-800 dark:bg-gray-900"
-      {...props}
-    >
-      {children}
-    </pre>
-  ),
+  // Styling is handled in globals.css to work with rehype-pretty-code
+  pre: ({ children, ...props }) => <pre {...props}>{children}</pre>,
 
   // Horizontal rule
   hr: (props) => <hr className="my-8 border-t border-gray-200 dark:border-gray-800" {...props} />,

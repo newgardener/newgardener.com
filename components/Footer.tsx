@@ -12,18 +12,12 @@ const socialLinks = [
     href: 'www.linkedin.com/in/jeongwonshin',
     icon: Linkedin,
   },
-  {
-    name: 'Email',
-    href: 'jennyshin106@gmail.com',
-    icon: Mail,
-  },
 ];
 
 const navigation = {
   main: [
     { name: 'Home', href: '/' },
     { name: 'Blog', href: '/blog' },
-    { name: 'About', href: '/about' },
   ],
 };
 
