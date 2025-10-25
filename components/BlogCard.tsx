@@ -16,7 +16,7 @@ export function BlogCard({ slug, title, description, date, thumbnail, tags, icon
   return (
     <Link
       href={`/blog/${slug}`}
-      className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 transition-all duration-300 hover:border-gray-300 hover:shadow-xl hover:-translate-y-1 dark:border-gray-800 dark:bg-gray-950 dark:hover:border-gray-700"
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 transition-all duration-200 hover:border-gray-300 hover:shadow-lg dark:border-gray-800 dark:bg-gray-950 dark:hover:border-gray-700"
     >
       {/* Thumbnail / Illustration Area */}
       <div className="relative mb-6 flex h-48 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
