@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { BlogCard } from '@/components/BlogCard';
+import { FountainPenDivider } from '@/components/FountainPenDivider';
 import type { PostMetadata } from '@/lib/getPostMetadata';
 
 interface FolderBlogLayoutProps {
@@ -119,54 +120,72 @@ export function FolderBlogLayout({ posts }: FolderBlogLayoutProps) {
                     className="border-t"
                     style={{
                       marginTop: i === 0 ? '30px' : '18px',
-                      borderColor: 'var(--folder-line-dark)',
+                      borderColor: 'var(--folder-line)',
                     }}
                   />
                 ))}
               </div>
 
-              {/* White content paper inside folder */}
+              {/* Content paper inside folder */}
               <div
-                className="relative m-10 mt-16 rounded bg-white p-10 shadow-lg"
+                className="relative m-3 mt-12 rounded p-4 shadow-lg sm:m-6 sm:mt-14 sm:p-6 md:m-10 md:mt-16 md:p-10"
                 style={{
                   minHeight: '600px',
+                  backgroundColor: 'var(--folder-paper)',
                 }}
               >
                 {/* Header */}
                 <div
-                  className="mb-8 border-b-2 pb-6"
+                  className="mb-6 border-b-2 pb-4 sm:mb-8 sm:pb-6"
                   style={{ borderColor: 'var(--folder-border-light)' }}
                 >
-                  <div className="flex items-baseline gap-4">
+                  <div className="flex flex-wrap items-baseline gap-2 sm:gap-4">
                     <h1
-                      className="text-4xl font-bold"
+                      className="text-2xl font-bold sm:text-3xl md:text-4xl"
                       style={{ color: 'var(--folder-turquoise-dark)' }}
                     >
                       {selectedCategory}
                     </h1>
-                    <span style={{ color: 'var(--folder-text-medium)' }}>
+                    <span className="text-gray-600 dark:text-gray-400">
                       {filteredPosts.length} {filteredPosts.length === 1 ? 'article' : 'articles'}
                     </span>
                   </div>
                 </div>
 
                 {/* Blog Posts Grid */}
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                  {filteredPosts.map((post) => (
-                    <BlogCard
-                      key={post.slug}
-                      slug={post.slug}
-                      title={post.title}
-                      description={post.description}
-                      date={post.date}
-                      thumbnail={post.thumbnail}
-                      tags={post.tags}
-                    />
-                  ))}
+                <div className="grid grid-cols-1 gap-3 sm:gap-4 md:gap-6 md:grid-cols-2">
+                  {filteredPosts.flatMap((post, index) => {
+                    const isLastInRow = (index + 1) % 2 === 0;
+                    const isNotLastPost = index < filteredPosts.length - 1;
+                    const shouldShowDivider = isLastInRow && isNotLastPost;
+
+                    const elements = [
+                      <BlogCard
+                        key={post.slug}
+                        slug={post.slug}
+                        title={post.title}
+                        description={post.description}
+                        date={post.date}
+                        thumbnail={post.thumbnail}
+                        tags={post.tags}
+                        index={index}
+                      />,
+                    ];
+
+                    if (shouldShowDivider) {
+                      elements.push(
+                        <div key={`divider-${post.slug}`} className="col-span-1 md:col-span-2">
+                          <FountainPenDivider />
+                        </div>
+                      );
+                    }
+
+                    return elements;
+                  })}
                 </div>
 
                 {filteredPosts.length === 0 && (
-                  <div className="py-20 text-center" style={{ color: 'var(--folder-text-light)' }}>
+                  <div className="py-20 text-center text-gray-500 dark:text-gray-400">
                     <p>No articles found in this category.</p>
                   </div>
                 )}
