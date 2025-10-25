@@ -18,8 +18,11 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="mt-auto border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <footer
+      className="mt-auto border-gray-200 dark:border-gray-800"
+      style={{ backgroundColor: 'var(--folder-header-footer-bg)' }}
+    >
+      <div className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
         <div className="border-t border-gray-200 pt-8 dark:border-gray-800">
           {/* Social Links */}
           <div className="mb-6 flex justify-center gap-6">

@@ -11,7 +11,10 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/80 backdrop-blur-md dark:border-gray-800 dark:bg-gray-950/80">
+    <header
+      className="sticky top-0 z-50 w-full border-b border-gray-200 backdrop-blur-md dark:border-gray-800"
+      style={{ backgroundColor: 'var(--folder-header-footer-bg)' }}
+    >
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
         {/* Logo */}
         <div className="flex">
