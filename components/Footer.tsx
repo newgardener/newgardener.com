@@ -23,7 +23,7 @@ export function Footer() {
       style={{ backgroundColor: 'var(--folder-header-footer-bg)' }}
     >
       <div className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-        <div className="border-t border-gray-200 pt-8 dark:border-gray-800">
+        <div className="border-t pt-8" style={{ borderColor: 'var(--folder-border-light)' }}>
           {/* Social Links */}
           <div className="mb-6 flex justify-center gap-6">
             {socialLinks.map((link) => {

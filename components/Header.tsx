@@ -1,27 +1,25 @@
 'use client';
 
-import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
-import { useState } from 'react';
+import { Logo } from './Logo';
 import { ThemeToggle } from './ThemeToggle';
 
 const navigation: { name: string; href: string }[] = [];
 
 export function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   return (
     <header
-      className="sticky top-0 z-50 w-full border-b border-gray-200 backdrop-blur-md dark:border-gray-800"
-      style={{ backgroundColor: 'var(--folder-header-footer-bg)' }}
+      className="sticky top-0 z-50 w-full border-b backdrop-blur-md"
+      style={{
+        backgroundColor: 'var(--folder-header-footer-bg)',
+        borderColor: 'var(--folder-border-light)',
+      }}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
         {/* Logo */}
         <div className="flex">
           <Link href="/" className="-m-1.5 p-1.5">
-            <span className="text-xl font-bold text-gray-900 dark:text-gray-100">
-              jeongwonshin<span className="text-blue-600">.dev</span>
-            </span>
+            <Logo width={200} height={80} />
           </Link>
         </div>
 
@@ -44,7 +42,8 @@ export function Header() {
           <ThemeToggle />
 
           {/* Mobile menu button - shows below 1000px */}
-          <button
+          {/* TODO: show this after adding extra menus */}
+          {/* <button
             type="button"
             className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 min-[1000px]:hidden dark:text-gray-300"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -55,12 +54,12 @@ export function Header() {
             ) : (
               <Menu className="h-6 w-6" aria-hidden="true" />
             )}
-          </button>
+          </button> */}
         </div>
       </nav>
 
       {/* Mobile menu */}
-      {mobileMenuOpen && (
+      {/* {mobileMenuOpen && (
         <div className="min-[1000px]:hidden">
           <div className="space-y-1 border-t border-gray-200 px-4 pb-3 pt-2 dark:border-gray-800">
             {navigation.map((item) => (
@@ -75,7 +74,7 @@ export function Header() {
             ))}
           </div>
         </div>
-      )}
+      )} */}
     </header>
   );
 }
