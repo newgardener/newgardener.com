@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+/* Folder Design Color Palette */
+:root {
+  --folder-turquoise-light: #80B6C6;
+  --folder-turquoise-dark: #5090AA;
+  --folder-white: #FFFFFF;
+  --folder-bg-light: #F6FCFF;
+  --folder-text-dark: #2a2a2a;
+  --folder-line-dark: #1a1a1a;
+  --folder-border-light: #E0E0E0;
+  --folder-text-medium: #666666;
+  --folder-text-light: #999999;
+}
+
 /* Base styles */
 html {
   scroll-behavior: smooth;

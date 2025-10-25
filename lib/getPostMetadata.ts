@@ -10,6 +10,7 @@ export interface PostMetadata {
   date: string;
   thumbnail?: string;
   tags?: string[];
+  category?: string;
   author?: string;
   draft?: boolean;
 }
@@ -46,6 +47,7 @@ export function getPostMetadata(): PostMetadata[] {
       date: convertDateToString(data.date),
       thumbnail: data.thumbnail,
       tags: data.tags || [],
+      category: data.category || 'All',
       author: data.author,
       draft: data.draft || false,
     } as PostMetadata;
