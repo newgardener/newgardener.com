@@ -5,22 +5,28 @@ import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 
 export function ThemeToggle() {
-  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  // useEffect only runs on the client, so now we can safely show the UI
+  // Only render after component has mounted on client
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  // Prevent rendering during SSR to avoid hydration mismatch
   if (!mounted) {
     return (
       <button
         type="button"
-        className="inline-flex items-center justify-center rounded-md p-2 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800"
+        className="inline-flex items-center justify-center p-3 rounded-full shadow-lg transition-all hover:scale-110 z-50"
+        style={{
+          backgroundColor: 'var(--folder-turquoise-dark)',
+          color: 'var(--folder-white)',
+        }}
         aria-label="Toggle theme"
+        disabled
       >
-        <Sun className="h-5 w-5" />
+        <div className="h-5 w-5" />
       </button>
     );
   }
@@ -29,10 +35,14 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="inline-flex items-center justify-center rounded-md p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-100"
+      className="inline-flex items-center justify-center p-3 rounded-full shadow-lg transition-all hover:scale-110 z-50"
+      style={{
+        backgroundColor: 'var(--folder-turquoise-dark)',
+        color: 'var(--folder-white)',
+      }}
       aria-label="Toggle theme"
     >
-      {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+      {theme === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
     </button>
   );
 }
