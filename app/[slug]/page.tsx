@@ -74,7 +74,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         <article className="min-w-0 flex-1">
           {/* Back Link */}
           <Link
-            href="/blog"
+            href="/"
             className="mb-8 inline-flex items-center gap-2 text-sm text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
           >
             <ArrowLeft className="h-4 w-4" />
@@ -126,7 +126,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 {/* Previous Post */}
                 {adjacentPosts.previous ? (
                   <Link
-                    href={`/blog/${adjacentPosts.previous.slug}`}
+                    href={`/${adjacentPosts.previous.slug}`}
                     className="group flex flex-col rounded-lg border border-gray-200 p-6 transition-colors hover:border-gray-300 hover:bg-gray-50 dark:border-gray-800 dark:hover:border-gray-700 dark:hover:bg-gray-900"
                   >
                     <span className="mb-2 flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
@@ -144,7 +144,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 {/* Next Post */}
                 {adjacentPosts.next && (
                   <Link
-                    href={`/blog/${adjacentPosts.next.slug}`}
+                    href={`/${adjacentPosts.next.slug}`}
                     className="group flex flex-col rounded-lg border border-gray-200 p-6 text-right transition-colors hover:border-gray-300 hover:bg-gray-50 dark:border-gray-800 dark:hover:border-gray-700 dark:hover:bg-gray-900"
                   >
                     <span className="mb-2 flex items-center justify-end gap-2 text-sm text-gray-600 dark:text-gray-400">

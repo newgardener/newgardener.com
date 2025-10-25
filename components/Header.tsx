@@ -5,11 +5,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { ThemeToggle } from './ThemeToggle';
 
-const navigation = [
-  { name: 'Home', href: '/' },
-  { name: 'Blog', href: '/blog' },
-  { name: 'About', href: '/about' },
-];
+const navigation: { name: string; href: string }[] = [];
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
