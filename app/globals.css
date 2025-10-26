@@ -6,6 +6,7 @@
   --folder-turquoise-dark: #5090aa;
   --folder-white: #ffffff;
   --folder-bg-light: #f6fcff;
+  --folder-bg-dark: #5090aa;
   --folder-text-dark: #2a2a2a;
   --folder-text-medium: #666666;
   --folder-text-light: #999999;
@@ -17,9 +18,10 @@
 
 .dark {
   --folder-turquoise-light: #00608d;
-  --folder-turquoise-dark: #003757;
+  --folder-turquoise-dark: #00608d;
   --folder-white: #ffffff;
   --folder-bg-light: #00252f;
+  --folder-bg-dark: #003757;
   --folder-text-dark: #e0e0e0;
   --folder-text-medium: #b0b0b0;
   --folder-text-light: #888888;
@@ -56,7 +58,9 @@ samp {
 
 /* Inline code styling (not in code blocks) */
 :not(pre) > code {
-  @apply rounded bg-gray-100 px-1.5 py-0.5 font-medium text-gray-800 dark:bg-gray-800 dark:text-gray-200;
+  @apply rounded px-1.5 py-0.5 font-medium;
+  background-color: var(--folder-bg-light);
+  color: var(--folder-turquoise-dark);
   font-size: calc(1em - 5%);
   font-family:
     ui-monospace,

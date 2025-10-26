@@ -1,0 +1,228 @@
+---
+title: MDX Components Test Page
+description: A comprehensive test page showcasing all custom MDX components including headings, lists, code blocks, tables, and more.
+date: 2025-01-20
+category: tech
+tags:
+  - MDX
+  - Test
+  - Components
+author: Jeongwon Shin
+draft: false
+---
+
+# H1: Main Heading
+
+This is a paragraph with regular text. It demonstrates the default paragraph styling with proper line height and spacing. You can write multiple sentences here to see how the text flows naturally.
+
+## H2: Second Level Heading
+
+Here's another paragraph under H2. This section will test **bold text** and *italic text* formatting. You can also combine them like ***bold and italic***.
+
+### H3: Third Level Heading
+
+Testing inline `code snippets` within a paragraph. Inline code should have a subtle background and proper padding.
+
+#### H4: Fourth Level Heading
+
+This is a smaller heading for sub-sections.
+
+##### H5: Fifth Level Heading
+
+Even smaller heading for detailed subsections.
+
+###### H6: Sixth Level Heading
+
+The smallest heading level available.
+
+---
+
+## Links
+
+Here's an [internal link](/blog) to another page on this site.
+
+Here's an [external link](https://github.com/newgardener) that opens in a new tab.
+
+---
+
+## Lists
+
+### Unordered List
+
+- First item in the list
+- Second item with **bold text**
+- Third item with *italic text*
+  - Nested item one
+  - Nested item two
+- Fourth item with `inline code`
+
+### Ordered List
+
+1. First numbered item
+2. Second numbered item with a longer description to test wrapping behavior
+3. Third item
+   1. Nested numbered item
+   2. Another nested item
+4. Fourth item
+
+---
+
+## Blockquotes
+
+> This is a blockquote. It's perfect for highlighting important information or quotes from other sources.
+>
+> You can have multiple paragraphs inside a blockquote.
+
+> **Note**: Blockquotes can contain **bold**, *italic*, and `code` formatting too!
+
+---
+
+## Code Blocks
+
+### JavaScript
+
+```javascript
+function greet(name) {
+  console.log(`Hello, ${name}!`);
+  return true;
+}
+
+const result = greet('World');
+```
+
+### TypeScript
+
+```typescript
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+function getUser(id: number): User {
+  return {
+    id,
+    name: 'John Doe',
+    email: 'john@example.com',
+  };
+}
+```
+
+### Python
+
+```python
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+result = fibonacci(10)
+print(f"Result: {result}")
+```
+
+---
+
+## Tables
+
+| Feature | Description | Status |
+|---------|-------------|--------|
+| Headings | H1-H6 support | ✅ Complete |
+| Lists | Ordered & Unordered | ✅ Complete |
+| Code | Inline & Blocks | ✅ Complete |
+| Tables | Full support | ✅ Complete |
+| Links | Internal & External | ✅ Complete |
+
+### Complex Table
+
+| Syntax | Description | Example | Notes |
+|--------|-------------|---------|-------|
+| **Bold** | Makes text bold | **text** | Use for emphasis |
+| *Italic* | Makes text italic | *text* | Use for stress |
+| `Code` | Inline code | `code` | Monospace font |
+| [Link](#) | Hyperlink | [text](url) | Internal or external |
+
+---
+
+## Horizontal Rules
+
+Above and below this text you'll see horizontal rules (dividers).
+
+---
+
+## Text Formatting
+
+This paragraph demonstrates various text formatting options:
+
+- **Bold text** for strong emphasis
+- *Italic text* for subtle emphasis
+- ***Bold and italic*** for maximum emphasis
+- `inline code` for technical terms
+- Regular text for normal content
+
+---
+
+## Mixed Content Example
+
+Here's a real-world example combining multiple elements:
+
+### Setting Up a React Project
+
+First, create a new project:
+
+```bash
+npx create-react-app my-app
+cd my-app
+npm start
+```
+
+Key features of React:
+
+1. **Component-Based**: Build encapsulated components
+2. **Declarative**: Design simple views for each state
+3. **Learn Once, Write Anywhere**: Develop new features without rewriting
+
+> **Pro Tip**: Always use functional components with hooks instead of class components for better performance and cleaner code.
+
+Check out the [official React documentation](https://react.dev) for more information.
+
+---
+
+## Special Characters
+
+Testing special characters: & < > " ' / \\ @ # $ % ^ * ( ) - + = { } [ ] | ; : , . ? !
+
+---
+
+## Nested Lists with Code
+
+1. Setup project
+   - Install dependencies
+   - Configure environment
+   ```bash
+   npm install
+   npm run dev
+   ```
+2. Write code
+   - Create components
+   - Add styles
+3. Test and deploy
+
+---
+
+## Conclusion
+
+This test page includes:
+
+- ✅ All heading levels (H1-H6)
+- ✅ Paragraphs with various formatting
+- ✅ Ordered and unordered lists
+- ✅ Nested lists
+- ✅ Code blocks with syntax highlighting
+- ✅ Inline code snippets
+- ✅ Tables (simple and complex)
+- ✅ Blockquotes
+- ✅ Links (internal and external)
+- ✅ Horizontal rules
+- ✅ Text formatting (bold, italic, combined)
+
+All MDX components are now tested! 🎉

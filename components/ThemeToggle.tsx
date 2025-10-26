@@ -20,7 +20,7 @@ export function ThemeToggle() {
         type="button"
         className="inline-flex items-center justify-center p-3 rounded-full shadow-lg transition-all hover:scale-110 z-50"
         style={{
-          backgroundColor: 'var(--folder-turquoise-dark)',
+          backgroundColor: 'var(--folder-bg-dark)',
           color: 'var(--folder-white)',
         }}
         aria-label="Toggle theme"
@@ -37,7 +37,7 @@ export function ThemeToggle() {
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       className="inline-flex items-center justify-center p-3 rounded-full shadow-lg transition-all hover:scale-110 z-50"
       style={{
-        backgroundColor: 'var(--folder-turquoise-dark)',
+        backgroundColor: 'var(--folder-bg-dark)',
         color: 'var(--folder-white)',
       }}
       aria-label="Toggle theme"
