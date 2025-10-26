@@ -3,11 +3,14 @@
 import { useState } from 'react';
 import { BlogCard } from '@/components/BlogCard';
 import { FountainPenDivider } from '@/components/FountainPenDivider';
+import { Pagination } from '@/components/Pagination';
 import type { PostMetadata } from '@/lib/getPostMetadata';
 
 interface FolderBlogLayoutProps {
   posts: PostMetadata[];
 }
+
+const POSTS_PER_PAGE = 4;
 
 export function FolderBlogLayout({ posts }: FolderBlogLayoutProps) {
   // Dynamically generate categories from posts
@@ -22,9 +25,28 @@ export function FolderBlogLayout({ posts }: FolderBlogLayoutProps) {
   ];
 
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [currentPage, setCurrentPage] = useState(1);
 
   const filteredPosts =
     selectedCategory === 'All' ? posts : posts.filter((post) => post.category === selectedCategory);
+
+  // Calculate pagination
+  const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+  const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
+  const endIndex = startIndex + POSTS_PER_PAGE;
+  const paginatedPosts = filteredPosts.slice(startIndex, endIndex);
+
+  // Reset to page 1 when category changes
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    setCurrentPage(1);
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    // Scroll to top of content when page changes
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <div className="min-h-screen bg-[var(--folder-bg-light)] py-12">
@@ -42,7 +64,7 @@ export function FolderBlogLayout({ posts }: FolderBlogLayoutProps) {
                 return (
                   <button
                     key={category.id}
-                    onClick={() => setSelectedCategory(category.name)}
+                    onClick={() => handleCategoryChange(category.name)}
                     className="relative transition-all duration-300"
                     style={{
                       zIndex: zIndex,
@@ -114,7 +136,7 @@ export function FolderBlogLayout({ posts }: FolderBlogLayoutProps) {
             >
               {/* Horizontal ruled lines on folder */}
               <div className="pointer-events-none absolute inset-0 opacity-20">
-                {[...Array(35)].map((_, i) => (
+                {[...Array(50)].map((_, i) => (
                   <div
                     key={`folder-line-${i}`}
                     className="border-t"
@@ -154,9 +176,9 @@ export function FolderBlogLayout({ posts }: FolderBlogLayoutProps) {
 
                 {/* Blog Posts Grid */}
                 <div className="grid grid-cols-1 gap-3 sm:gap-4 md:gap-6 md:grid-cols-2">
-                  {filteredPosts.flatMap((post, index) => {
+                  {paginatedPosts.flatMap((post, index) => {
                     const isLastInRow = (index + 1) % 2 === 0;
-                    const isNotLastPost = index < filteredPosts.length - 1;
+                    const isNotLastPost = index < paginatedPosts.length - 1;
                     const shouldShowDivider = isLastInRow && isNotLastPost;
 
                     const elements = [
@@ -188,6 +210,15 @@ export function FolderBlogLayout({ posts }: FolderBlogLayoutProps) {
                   <div className="py-20 text-center text-gray-500 dark:text-gray-400">
                     <p>No articles found in this category.</p>
                   </div>
+                )}
+
+                {/* Pagination */}
+                {totalPages > 1 && (
+                  <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={handlePageChange}
+                  />
                 )}
               </div>
             </div>
