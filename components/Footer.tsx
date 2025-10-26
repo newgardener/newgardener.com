@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin } from 'lucide-react';
 import Link from 'next/link';
 
 const socialLinks = [
@@ -9,7 +9,7 @@ const socialLinks = [
   },
   {
     name: 'LinkedIn',
-    href: 'www.linkedin.com/in/jeongwonshin',
+    href: 'https://www.linkedin.com/in/jeongwonshin',
     icon: Linkedin,
   },
 ];
