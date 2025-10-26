@@ -1,47 +1,46 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
-
 import { useEffect, useRef } from 'react';
 
 export function Giscus() {
   const ref = useRef<HTMLDivElement>(null);
   const { resolvedTheme } = useTheme();
+  const pathname = usePathname();
 
-  // https://github.com/giscus/giscus/tree/main/styles/themes
   const theme = resolvedTheme === 'dark' ? 'dark_high_contrast' : 'light_high_contrast';
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: create the Giscus script once on mount
   useEffect(() => {
-    if (!ref.current || ref.current.hasChildNodes()) return;
+    if (!ref.current) return;
 
-    const scriptElem = document.createElement('script');
-    scriptElem.src = 'https://giscus.app/client.js';
-    scriptElem.async = true;
-    scriptElem.crossOrigin = 'anonymous';
+    // 경로가 바뀌면 이전 iframe 제거
+    ref.current.innerHTML = '';
 
-    scriptElem.setAttribute('data-repo', process.env.NEXT_PUBLIC_GISCUS_REPO || '');
-    scriptElem.setAttribute('data-repo-id', process.env.NEXT_PUBLIC_GISCUS_REPO_ID || '');
-    scriptElem.setAttribute('data-category', process.env.NEXT_PUBLIC_GISCUS_CATEGORY || '');
-    scriptElem.setAttribute('data-category-id', process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID || '');
-    scriptElem.setAttribute('data-mapping', 'pathname');
-    scriptElem.setAttribute('data-strict', '0');
-    scriptElem.setAttribute('data-reactions-enabled', '1');
-    scriptElem.setAttribute('data-emit-metadata', '0');
-    scriptElem.setAttribute('data-input-position', 'bottom');
-    scriptElem.setAttribute('data-theme', theme);
-    scriptElem.setAttribute('data-lang', 'en');
+    const s = document.createElement('script');
+    s.src = 'https://giscus.app/client.js';
+    s.async = true;
+    s.crossOrigin = 'anonymous';
 
-    ref.current.appendChild(scriptElem);
-  }, []);
+    s.setAttribute('data-repo', process.env.NEXT_PUBLIC_GISCUS_REPO || '');
+    s.setAttribute('data-repo-id', process.env.NEXT_PUBLIC_GISCUS_REPO_ID || '');
+    s.setAttribute('data-category', process.env.NEXT_PUBLIC_GISCUS_CATEGORY || '');
+    s.setAttribute('data-category-id', process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID || '');
+    s.setAttribute('data-mapping', 'pathname'); // 또는 'specific'
+    s.setAttribute('data-strict', '0');
+    s.setAttribute('data-reactions-enabled', '1');
+    s.setAttribute('data-emit-metadata', '0');
+    s.setAttribute('data-input-position', 'bottom');
+    s.setAttribute('data-theme', theme);
+    s.setAttribute('data-lang', 'en');
 
-  // https://github.com/giscus/giscus/blob/main/ADVANCED-USAGE.md#isetconfigmessage
+    ref.current.appendChild(s);
+  }, [pathname]);
+
   useEffect(() => {
     const iframe = document.querySelector<HTMLIFrameElement>('iframe.giscus-frame');
-    if (iframe?.contentWindow) {
-      iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, 'https://giscus.app');
-    }
+    iframe?.contentWindow?.postMessage({ giscus: { setConfig: { theme } } }, 'https://giscus.app');
   }, [theme]);
 
-  return <section ref={ref} />;
+  return <section ref={ref} key={pathname} />;
 }
