@@ -9,7 +9,7 @@ const navigation: { name: string; href: string }[] = [];
 export function Header() {
   return (
     <header
-      className="sticky top-0 z-50 w-full border-b backdrop-blur-md"
+      className="sticky top-0 z-100 w-full border-b backdrop-blur-md"
       style={{
         backgroundColor: 'var(--folder-header-footer-bg)',
         borderColor: 'var(--folder-border-light)',
