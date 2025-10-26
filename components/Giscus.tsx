@@ -9,8 +9,9 @@ export function Giscus() {
   const { resolvedTheme } = useTheme();
 
   // https://github.com/giscus/giscus/tree/main/styles/themes
-  const theme = resolvedTheme === 'dark' ? 'dark_high_contrast' : 'light_high_constrast';
+  const theme = resolvedTheme === 'dark' ? 'dark_high_contrast' : 'light_high_contrast';
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: create the Giscus script once on mount
   useEffect(() => {
     if (!ref.current || ref.current.hasChildNodes()) return;
 
@@ -32,12 +33,14 @@ export function Giscus() {
     scriptElem.setAttribute('data-lang', 'en');
 
     ref.current.appendChild(scriptElem);
-  }, [theme]);
+  }, []);
 
   // https://github.com/giscus/giscus/blob/main/ADVANCED-USAGE.md#isetconfigmessage
   useEffect(() => {
     const iframe = document.querySelector<HTMLIFrameElement>('iframe.giscus-frame');
-    iframe?.contentWindow?.postMessage({ giscus: { setConfig: { theme } } }, 'https://giscus.app');
+    if (iframe?.contentWindow) {
+      iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, 'https://giscus.app');
+    }
   }, [theme]);
 
   return <section ref={ref} />;
