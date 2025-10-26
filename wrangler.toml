@@ -1,11 +1,21 @@
-name = "jeongwonshin-blog"
-compatibility_date = "2024-09-23"
+name = "jeongwonshin-memos"
+main = ".open-next/worker.js"
+compatibility_date = "2025-03-25"
 compatibility_flags = ["nodejs_compat"]
-pages_build_output_dir = ".cloudflare/dist"
 
-[site]
-bucket = ".cloudflare/dist"
+# Static assets configuration
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"
 
-# Environment variables (if needed)
-# [env.production]
-# vars = { ENVIRONMENT = "production" }
+# R2 bucket for Next.js incremental cache
+[[r2_buckets]]
+binding = "NEXT_INC_CACHE_R2_BUCKET"
+bucket_name = "jeongwonshin-memos-cache"
+
+# Environment variables for Giscus
+[vars]
+NEXT_PUBLIC_GISCUS_REPO = "newgardener/newgardener.com"
+NEXT_PUBLIC_GISCUS_REPO_ID = "R_kgDOQEuT6w"
+NEXT_PUBLIC_GISCUS_CATEGORY = "Comments"
+NEXT_PUBLIC_GISCUS_CATEGORY_ID = "DIC_kwDOQEuT684CxFOD"
