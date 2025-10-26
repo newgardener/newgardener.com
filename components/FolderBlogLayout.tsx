@@ -49,8 +49,8 @@ export function FolderBlogLayout({ posts }: FolderBlogLayoutProps) {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--folder-bg-light)] py-12">
-      <div className="mx-auto max-w-7xl px-4 lg:px-8">
+    <div className="min-h-screen bg-[var(--folder-bg-light)] py-12 px-4">
+      <div className="mx-auto max-w-7xl">
         {/* Main Folder Container */}
         <div className="relative">
           {/* Folder with tabs on top */}

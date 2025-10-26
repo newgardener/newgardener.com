@@ -15,7 +15,7 @@ export function Header() {
         borderColor: 'var(--folder-border-light)',
       }}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between p-4">
         {/* Logo */}
         <div className="flex">
           <Link href="/" className="-m-1.5 p-1.5">
