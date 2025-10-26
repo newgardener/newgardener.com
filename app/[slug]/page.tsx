@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { FountainPenDivider } from '@/components/FountainPenDivider';
+import { Giscus } from '@/components/Giscus';
 import { MemoChip } from '@/components/MemoChip';
 import { PostNavigation } from '@/components/PostNavigation';
 import { TableOfContents } from '@/components/TableOfContents';
@@ -73,7 +74,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   return (
     <div className="min-h-screen py-12 px-4" style={{ backgroundColor: 'var(--folder-bg-light)' }}>
       <div className="max-w-7xl mx-auto">
-        <div className="lg:flex lg:gap-12">
+        <div className="lg:flex lg:gap-12 pb-16">
           {/* Main Content */}
           <article className="min-w-0 flex-1">
             {/* Back Button */}
@@ -176,6 +177,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             </aside>
           )}
         </div>
+        <Giscus />
       </div>
     </div>
   );
