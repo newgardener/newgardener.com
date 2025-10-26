@@ -1,24 +1,10 @@
 import { compileMDX } from 'next-mdx-remote/rsc';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypePrettyCode from 'rehype-pretty-code';
-import rehypeSlug from 'rehype-slug';
-import remarkGfm from 'remark-gfm';
 import { mdxComponents } from '@/components/MDXContent';
+import { getMDXOptions } from './mdx-config';
 
 interface CompileMDXResult<TFrontmatter> {
   content: React.ReactElement;
   frontmatter: TFrontmatter;
-}
-
-// Types for rehype-pretty-code node objects
-interface RehypeNode {
-  type: string;
-  value?: string;
-  children: RehypeNode[];
-  properties?: {
-    className?: string[];
-    [key: string]: unknown;
-  };
 }
 
 /**
@@ -31,46 +17,7 @@ export async function compileMDXContent<TFrontmatter = Record<string, unknown>>(
     source,
     options: {
       parseFrontmatter: true,
-      mdxOptions: {
-        remarkPlugins: [remarkGfm],
-        rehypePlugins: [
-          rehypeSlug,
-          [
-            rehypePrettyCode,
-            {
-              theme: {
-                dark: 'houston',
-                light: 'houston',
-              },
-              keepBackground: true,
-              defaultLang: 'plaintext',
-              onVisitLine(node: RehypeNode) {
-                // Prevent lines from collapsing in `display: grid` mode
-                if (node.children.length === 0) {
-                  node.children = [{ type: 'text', value: ' ', children: [] }];
-                }
-              },
-              onVisitHighlightedLine(node: RehypeNode) {
-                node.properties?.className?.push('highlighted');
-              },
-              onVisitHighlightedChars(node: RehypeNode) {
-                if (node.properties) {
-                  node.properties.className = ['word'];
-                }
-              },
-            },
-          ],
-          [
-            rehypeAutolinkHeadings,
-            {
-              behavior: 'wrap',
-              properties: {
-                className: ['anchor'],
-              },
-            },
-          ],
-        ],
-      },
+      mdxOptions: getMDXOptions() as any,
     },
     components: mdxComponents,
   });
