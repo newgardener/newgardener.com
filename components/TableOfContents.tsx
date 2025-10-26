@@ -52,7 +52,7 @@ export function TableOfContents({ items }: TableOfContentsProps) {
     e.preventDefault();
     const element = document.getElementById(id);
     if (element) {
-      const offset = 80; // Account for sticky header
+      const offset = 120; // Account for sticky header + padding
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -76,27 +76,66 @@ export function TableOfContents({ items }: TableOfContentsProps) {
       className="sticky top-24 hidden h-fit max-h-[calc(100vh-6rem)] overflow-y-auto lg:block"
       aria-label="Table of contents"
     >
-      <div className="space-y-2">
-        <h2 className="mb-4 text-sm font-semibold text-gray-900 dark:text-gray-100">
-          On This Page
-        </h2>
-        <ul className="space-y-2 text-sm">
+      <div
+        className="p-6 rounded-lg border shadow-sm"
+        style={{
+          backgroundColor: 'var(--folder-paper)',
+          borderColor: 'var(--folder-border-light)',
+        }}
+      >
+        {/* Title with hand-drawn underline */}
+        <div className="mb-4">
+          <h4 className="mb-1 text-sm font-semibold" style={{ color: 'var(--folder-text-dark)' }}>
+            On This Page
+          </h4>
+          {/* Hand-drawn underline */}
+          <svg
+            width="100%"
+            height="2"
+            viewBox="0 0 200 2"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="opacity-30"
+            preserveAspectRatio="none"
+          >
+            <title>Decorative underline</title>
+            <path
+              d="M 0 1 Q 50 0.5, 100 1 T 200 1"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              style={{ color: 'var(--folder-turquoise-dark)' }}
+            />
+          </svg>
+        </div>
+
+        {/* Navigation list */}
+        <ul className="space-y-1 text-sm">
           {items.map((item) => {
             const isActive = activeId === item.id;
             const isH3 = item.level === 3;
+            // Calculate indentation based on heading level
+            const indent = isH3 ? 16 : 0;
 
             return (
-              <li key={item.id} className={isH3 ? 'ml-4' : ''}>
+              <li key={item.id} style={{ paddingLeft: `${indent}px` }}>
                 <a
                   href={`#${item.id}`}
                   onClick={(e) => handleClick(e, item.id)}
-                  className={`block border-l-2 py-1 pl-3 transition-colors ${
-                    isActive
-                      ? 'border-blue-600 text-blue-600 dark:border-blue-400 dark:text-blue-400'
-                      : 'border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900 dark:border-gray-800 dark:text-gray-400 dark:hover:border-gray-600 dark:hover:text-gray-100'
-                  }`}
+                  className="relative block py-1.5 px-3 -ml-3 rounded transition-all"
+                  style={{
+                    color: isActive ? 'var(--folder-turquoise-dark)' : 'var(--folder-text-medium)',
+                    backgroundColor: isActive ? 'var(--folder-bg-light)' : 'transparent',
+                  }}
                 >
-                  {item.text}
+                  {/* Active indicator bar */}
+                  {isActive && (
+                    <div
+                      className="absolute left-0 top-1 bottom-1 w-0.5 rounded-full"
+                      style={{ backgroundColor: 'var(--folder-turquoise-dark)' }}
+                    />
+                  )}
+                  <span className={isActive ? '' : 'hover:opacity-70'}>{item.text}</span>
                 </a>
               </li>
             );
@@ -115,7 +154,7 @@ export function MobileTableOfContents({ items }: TableOfContentsProps) {
     e.preventDefault();
     const element = document.getElementById(id);
     if (element) {
-      const offset = 80;
+      const offset = 120; // Account for sticky header + padding
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -138,7 +177,12 @@ export function MobileTableOfContents({ items }: TableOfContentsProps) {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-center justify-between rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm font-medium text-gray-900 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-100"
+        className="flex w-full items-center justify-between rounded-lg border px-4 py-3 text-sm font-medium"
+        style={{
+          backgroundColor: 'var(--folder-paper)',
+          borderColor: 'var(--folder-border-light)',
+          color: 'var(--folder-text-dark)',
+        }}
         aria-expanded={isOpen}
       >
         <span>Table of Contents</span>
@@ -155,7 +199,13 @@ export function MobileTableOfContents({ items }: TableOfContentsProps) {
       </button>
 
       {isOpen && (
-        <div className="mt-2 rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
+        <div
+          className="mt-2 rounded-lg border p-4"
+          style={{
+            backgroundColor: 'var(--folder-paper)',
+            borderColor: 'var(--folder-border-light)',
+          }}
+        >
           <ul className="space-y-2 text-sm">
             {items.map((item) => {
               const isH3 = item.level === 3;
@@ -165,7 +215,8 @@ export function MobileTableOfContents({ items }: TableOfContentsProps) {
                   <a
                     href={`#${item.id}`}
                     onClick={(e) => handleClick(e, item.id)}
-                    className="block py-1 text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
+                    className="block py-1 transition-colors hover:opacity-70"
+                    style={{ color: 'var(--folder-text-medium)' }}
                   >
                     {item.text}
                   </a>
