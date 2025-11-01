@@ -26,7 +26,7 @@ export function Giscus() {
     s.setAttribute('data-repo-id', process.env.NEXT_PUBLIC_GISCUS_REPO_ID || '');
     s.setAttribute('data-category', process.env.NEXT_PUBLIC_GISCUS_CATEGORY || '');
     s.setAttribute('data-category-id', process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID || '');
-    s.setAttribute('data-mapping', 'pathname'); // 또는 'specific'
+    s.setAttribute('data-mapping', 'pathname');
     s.setAttribute('data-strict', '0');
     s.setAttribute('data-reactions-enabled', '1');
     s.setAttribute('data-emit-metadata', '0');
@@ -35,11 +35,6 @@ export function Giscus() {
     s.setAttribute('data-lang', 'en');
 
     ref.current.appendChild(s);
-  }, [pathname]);
-
-  useEffect(() => {
-    const iframe = document.querySelector<HTMLIFrameElement>('iframe.giscus-frame');
-    iframe?.contentWindow?.postMessage({ giscus: { setConfig: { theme } } }, 'https://giscus.app');
   }, [theme]);
 
   return <section ref={ref} key={pathname} />;
