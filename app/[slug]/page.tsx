@@ -74,23 +74,23 @@ export default async function BlogPostPage({ params }: PageProps) {
   return (
     <div className="min-h-screen py-12 px-4" style={{ backgroundColor: 'var(--folder-bg-light)' }}>
       <div className="max-w-7xl mx-auto">
+        {/* Back Button */}
+        <Link
+          href="/"
+          className="mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-lg transition-all hover:scale-105"
+          style={{
+            color: 'var(--folder-text-medium)',
+            backgroundColor: 'var(--folder-paper)',
+            border: '1px solid var(--folder-border-light)',
+          }}
+        >
+          <ArrowLeft className="h-4 w-4" />
+          <span>Back to Blog</span>
+        </Link>
+
         <div className="lg:flex lg:gap-12 pb-16">
           {/* Main Content */}
           <article className="min-w-0 flex-1">
-            {/* Back Button */}
-            <Link
-              href="/"
-              className="mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-lg transition-all hover:scale-105"
-              style={{
-                color: 'var(--folder-text-medium)',
-                backgroundColor: 'var(--folder-paper)',
-                border: '1px solid var(--folder-border-light)',
-              }}
-            >
-              <ArrowLeft className="h-4 w-4" />
-              <span>Back to Blog</span>
-            </Link>
-
             {/* Main Content Container - Clean white paper */}
             <div
               className="rounded-lg shadow-lg"
