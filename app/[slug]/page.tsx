@@ -86,32 +86,15 @@ export default async function BlogPostPage({ params }: PageProps) {
   const adjacentPosts = await getAdjacentPosts(slug, allSlugs);
 
   return (
-    <div className="min-h-screen py-12 px-4" style={{ backgroundColor: 'var(--folder-bg-light)' }}>
+    <div className="min-h-screen py-12 px-4" style={{ backgroundColor: 'var(--folder-paper)' }}>
       <div className="max-w-7xl mx-auto">
-        {/* Back Button */}
-        <Link
-          href="/"
-          className="mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-lg transition-all hover:scale-105"
-          style={{
-            color: 'var(--folder-text-medium)',
-            backgroundColor: 'var(--folder-paper)',
-            border: '1px solid var(--folder-border-light)',
-          }}
-        >
-          <ArrowLeft className="h-4 w-4" />
-          <span>Back to Blog</span>
-        </Link>
-
         <div className="lg:flex lg:gap-12 pb-16">
           {/* Main Content */}
           <article className="min-w-0 flex-1">
             {/* Main Content Container - Clean white paper */}
-            <div
-              className="rounded-lg shadow-lg"
-              style={{ backgroundColor: 'var(--folder-paper)' }}
-            >
+            <div style={{ backgroundColor: 'var(--folder-paper)' }}>
               {/* Header Section - Top of the note */}
-              <div className="p-10 pb-6">
+              <div className="p-2.5 pb-6">
                 {/* Title with hand-drawn underline */}
                 <div className="mb-6">
                   <h1
@@ -170,12 +153,12 @@ export default async function BlogPostPage({ params }: PageProps) {
                 )}
               </div>
 
-              <div className="px-10">
+              <div className="px-5">
                 <FountainPenDivider />
               </div>
 
               {/* MDX Content Area */}
-              <div className="p-10 pt-6">{post.content}</div>
+              <div className="p-5 pt-6">{post.content}</div>
 
               {/* Previous/Next Navigation */}
               <PostNavigation previous={adjacentPosts.previous} next={adjacentPosts.next} />

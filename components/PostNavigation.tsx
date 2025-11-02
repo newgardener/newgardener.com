@@ -19,7 +19,7 @@ export function PostNavigation({ previous, next }: PostNavigationProps) {
 
   return (
     <>
-      <div className="px-10">
+      <div className="px-5">
         <FountainPenDivider />
       </div>
       <div className="grid grid-cols-1 gap-6 px-10 pb-10 pt-6 md:grid-cols-2">
