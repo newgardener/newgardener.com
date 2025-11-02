@@ -56,7 +56,7 @@ export function FolderBlogLayout({ posts }: FolderBlogLayoutProps) {
           {/* Folder with tabs on top */}
           <div className="relative">
             {/* Category Tabs - Positioned on TOP */}
-            <div className="relative mb-0 flex gap-1" style={{ paddingLeft: '0' }}>
+            <div className="relative mb-0 flex gap-1" style={{ paddingLeft: '8px' }}>
               {categories.map((category, index) => {
                 const isSelected = selectedCategory === category.name;
                 const zIndex = isSelected ? 50 : 40 - index;
