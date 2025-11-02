@@ -79,7 +79,7 @@ export const mdxComponents: MDXComponents = {
     return (
       <Component
         href={href || ''}
-        className="font-medium underline underline-offset-2 transition-colors hover:opacity-80"
+        className="font-medium hover:underline underline-offset-2 transition-colors"
         style={{
           color: linkColor,
           textDecorationColor: linkColor,

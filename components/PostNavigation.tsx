@@ -40,10 +40,7 @@ export function PostNavigation({ previous, next }: PostNavigationProps) {
               <ArrowLeft className="h-4 w-4" />
               Previous
             </span>
-            <span
-              className="font-semibold group-hover:opacity-80"
-              style={{ color: 'var(--folder-turquoise-dark)' }}
-            >
+            <span className="font-semibold" style={{ color: 'var(--folder-turquoise-dark)' }}>
               {previous.title}
             </span>
           </Link>
@@ -68,10 +65,7 @@ export function PostNavigation({ previous, next }: PostNavigationProps) {
               Next
               <ArrowRight className="h-4 w-4" />
             </span>
-            <span
-              className="font-semibold group-hover:opacity-80"
-              style={{ color: 'var(--folder-turquoise-dark)' }}
-            >
+            <span className="font-semibold" style={{ color: 'var(--folder-turquoise-dark)' }}>
               {next.title}
             </span>
           </Link>

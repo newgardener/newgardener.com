@@ -3,7 +3,7 @@
 /* Folder Design Color Palette */
 :root {
   --folder-turquoise-light: #80b6c6;
-  --folder-turquoise-dark: #5090aa;
+  --folder-turquoise-dark: #087ea4;
   --folder-turquoise-lighter: #b3d4dd;
   --folder-white: #ffffff;
   --folder-bg-light: #f6fcff;
@@ -19,7 +19,7 @@
 
 .dark {
   --folder-turquoise-light: #00608d;
-  --folder-turquoise-dark: #00608d;
+  --folder-turquoise-dark: #58c4dc;
   --folder-turquoise-lighter: #004666;
   --folder-white: #ffffff;
   --folder-bg-light: #00252f;
@@ -60,10 +60,10 @@ samp {
 
 /* Inline code styling (not in code blocks) */
 :not(pre) > code {
-  @apply rounded px-1.5 py-0.5 font-medium;
-  background-color: var(--folder-bg-light);
-  color: var(--folder-turquoise-dark);
-  font-size: calc(1em - 5%);
+  @apply rounded px-2 py-0.5 font-medium;
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  font-size: 0.875em;
   font-family:
     ui-monospace,
     SFMono-Regular,
@@ -73,6 +73,12 @@ samp {
     Liberation Mono,
     Courier New,
     monospace;
+}
+
+/* Dark mode inline code */
+.dark :not(pre) > code {
+  background-color: #374151;
+  border: 1px solid #4b5563;
 }
 
 /* Custom scrollbar */
