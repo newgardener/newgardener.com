@@ -5,12 +5,12 @@ import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 
 interface LogoProps {
-  width?: number;
-  height?: number;
+  width: number;
+  height: number;
   className?: string;
 }
 
-export function Logo({ width = 200, height = 80, className = '' }: LogoProps) {
+export function Logo({ width, height, className = '' }: LogoProps) {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 

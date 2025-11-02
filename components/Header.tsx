@@ -19,7 +19,7 @@ export function Header() {
         {/* Logo */}
         <div className="flex">
           <Link href="/" className="-m-1.5 p-1.5">
-            <Logo width={148} height={45} />
+            <Logo width={105} height={45} />
           </Link>
         </div>
 
