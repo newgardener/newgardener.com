@@ -23,7 +23,7 @@ export function Logo({ width = 200, height = 80, className = '' }: LogoProps) {
   if (!mounted) {
     return (
       <Image
-        src="/images/logo.png"
+        src="/images/logo-light.png"
         alt="Memos from Jeongwon"
         width={width}
         height={height}
@@ -36,7 +36,7 @@ export function Logo({ width = 200, height = 80, className = '' }: LogoProps) {
   // After mounting, show theme-appropriate logo
   return (
     <Image
-      src={theme === 'dark' ? '/images/logo-dark.png' : '/images/logo.png'}
+      src={theme === 'dark' ? '/images/logo-dark.png' : '/images/logo-light.png'}
       alt="Memos from Jeongwon"
       width={width}
       height={height}

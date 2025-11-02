@@ -1,4 +1,4 @@
-# Jeongwonshin.dev - Tech Blog
+# Memos from jeongwon - Tech Blog
 
 A minimalist, documentation-style blog inspired by React and Next.js official documentation.
 
@@ -201,4 +201,4 @@ Jeongwonshin
 
 ---
 
-**Built with** ❤️ **using Next.js 15, TypeScript, and Tailwind CSS**
+**Built with** ❤️ **using Next.js 16, TypeScript, and Tailwind CSS**

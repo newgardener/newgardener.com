@@ -8,26 +8,46 @@ import { Header } from '@/components/Header';
 import './globals.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://jeongwonshin.dev'),
+  metadataBase: new URL('https://jeongwonshin.com'),
   title: {
-    default: 'jeongwonshin.dev',
-    template: '%s | jeongwonshin.dev',
+    default: 'jeongwonshin.com',
+    template: '%s | jeongwonshin.com',
   },
-  description: 'A personal tech blog inspired by React and Next.js documentation.',
-  keywords: ['Next.js', 'React', 'TypeScript', 'Frontend', 'Web Development'],
-  authors: [{ name: 'jeongwonshin' }],
+  description:
+    'Sharing insights on frontend development, exploring diverse development domains, and documenting my journey through code and life.',
+  keywords: [
+    'Next.js',
+    'React',
+    'TypeScript',
+    'Frontend',
+    'Web Development',
+    'Software Engineering',
+    'Developer Blog',
+  ],
+  authors: [{ name: 'Jeongwon Shin' }],
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://jeongwonshin.dev',
-    title: 'jeongwonshin.dev',
-    description: 'Frontend Architecture, Design, and Development',
-    siteName: 'jeongwonshin.dev',
+    url: 'https://jeongwonshin.com',
+    title: 'jeongwonshin.com',
+    description:
+      'Sharing insights on frontend development, exploring diverse development domains, and documenting my journey through code and life.',
+    siteName: 'jeongwonshin.com',
+    images: [
+      {
+        url: '/images/thumbnail.png',
+        width: 1200,
+        height: 630,
+        alt: 'jeongwonshin.com - Developer Blog',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'jeongwonshin.dev',
-    description: 'Frontend Architecture, Design, and Development',
+    title: 'jeongwonshin.com',
+    description:
+      'Sharing insights on frontend development, exploring diverse development domains, and documenting my journey through code and life.',
+    images: ['/images/thumbnail.png'],
   },
 };
 

@@ -35,23 +35,37 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://jeongwonshin.com';
+  const postUrl = `${siteUrl}/${slug}`;
+  const thumbnail = post.metadata.thumbnail || '/images/thumbnail.png';
+
   return {
-    title: `${post.metadata.title} | Jeongwonshin.dev`,
+    title: `${post.metadata.title} | jeongwonshin.com`,
     description: post.metadata.description,
     authors: post.metadata.author ? [{ name: post.metadata.author }] : undefined,
     openGraph: {
+      type: 'article',
+      locale: 'en_US',
+      url: postUrl,
+      siteName: 'jeongwonshin.com',
       title: post.metadata.title,
       description: post.metadata.description,
-      type: 'article',
       publishedTime: post.metadata.date,
       authors: post.metadata.author ? [post.metadata.author] : undefined,
-      images: post.metadata.thumbnail ? [{ url: post.metadata.thumbnail }] : undefined,
+      images: [
+        {
+          url: thumbnail,
+          width: 1200,
+          height: 630,
+          alt: post.metadata.title,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: post.metadata.title,
       description: post.metadata.description,
-      images: post.metadata.thumbnail ? [post.metadata.thumbnail] : undefined,
+      images: [thumbnail],
     },
   };
 }
