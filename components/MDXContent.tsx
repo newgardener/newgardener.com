@@ -123,7 +123,7 @@ export const mdxComponents: MDXComponents = {
   // Blockquote
   blockquote: ({ children, ...props }) => (
     <blockquote
-      className="my-6 border-l-8 pl-4 italic rounded-r-md py-2 pr-4"
+      className="my-6 border-l-4 pl-4 italic rounded-r-md py-2 pr-4"
       style={{
         borderColor: 'var(--folder-turquoise-dark)',
         backgroundColor: 'var(--folder-bg-light)',
@@ -145,7 +145,11 @@ export const mdxComponents: MDXComponents = {
 
   // Horizontal rule
   hr: (props) => (
-    <hr className="my-8 border-t" style={{ borderColor: 'var(--folder-border-dark)' }} {...props} />
+    <hr
+      className="my-8 border-t"
+      style={{ borderColor: 'var(--folder-border-light)' }}
+      {...props}
+    />
   ),
 
   // Table
@@ -153,7 +157,7 @@ export const mdxComponents: MDXComponents = {
     <div className="my-6 overflow-x-auto">
       <table
         className="min-w-full divide-y"
-        style={{ borderColor: 'var(--folder-border-dark)' }}
+        style={{ borderColor: 'var(--folder-border-light)' }}
         {...props}
       >
         {children}
@@ -169,7 +173,7 @@ export const mdxComponents: MDXComponents = {
     <tbody
       className="divide-y"
       style={{
-        borderColor: 'var(--folder-border-dark)',
+        borderColor: 'var(--folder-border-light)',
         backgroundColor: 'var(--folder-paper)',
       }}
       {...props}

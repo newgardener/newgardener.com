@@ -28,7 +28,7 @@ export function getMDXOptions() {
         {
           theme: {
             dark: 'houston',
-            light: 'houston',
+            light: 'github-light',
           },
           keepBackground: true,
           defaultLang: 'plaintext',

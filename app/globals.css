@@ -125,6 +125,7 @@ pre {
   font-size: calc(1em - 5%);
   line-height: 1.25rem;
   background-color: var(--shiki-light-bg) !important;
+  border: 1px solid #e5e7eb;
 }
 
 pre > code {
@@ -151,6 +152,7 @@ pre code span {
 /* Dark mode support for Shiki */
 .dark pre {
   background-color: var(--shiki-dark-bg) !important;
+  border: 1px solid #374151;
 }
 
 .dark pre > code {
