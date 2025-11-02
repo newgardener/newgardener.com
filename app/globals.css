@@ -14,7 +14,7 @@
   --folder-line: #1a1a1a;
   --folder-border-light: #e0e0e0;
   --folder-paper: #ffffff;
-  --folder-header-footer-bg: #f6fcff;
+  --folder-header-footer-bg: #ffffff;
 }
 
 .dark {
@@ -22,15 +22,15 @@
   --folder-turquoise-dark: #58c4dc;
   --folder-turquoise-lighter: #004666;
   --folder-white: #ffffff;
-  --folder-bg-light: #00252f;
+  --folder-bg-light: #23272f;
   --folder-bg-dark: #003757;
   --folder-text-dark: #e0e0e0;
   --folder-text-medium: #b0b0b0;
   --folder-text-light: #888888;
   --folder-line: #b0dfff;
   --folder-border-light: #374151;
-  --folder-paper: #1a1f2e;
-  --folder-header-footer-bg: #00252f;
+  --folder-paper: #23272f;
+  --folder-header-footer-bg: #23272f;
 }
 
 /* Base styles */
@@ -164,19 +164,69 @@ pre code span {
 }
 
 pre > code > [data-line] {
-  padding: 0 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   border-left: 2px solid transparent;
 }
 
+/* Line highlighting - uses data-highlighted-line attribute */
+pre > code > [data-line][data-highlighted-line] {
+  background-color: rgba(59, 130, 246, 0.1);
+  border-left-color: rgb(59, 130, 246);
+  margin-left: -1rem;
+  margin-right: -1rem;
+  padding-left: calc(1rem - 2px);
+  padding-right: 1rem;
+  width: calc(100% + 2rem);
+  display: inline-block;
+}
+
+/* Also support the custom 'highlighted' class for backwards compatibility */
 pre > code > [data-line].highlighted {
   background-color: rgba(59, 130, 246, 0.1);
   border-left-color: rgb(59, 130, 246);
+  margin-left: -1rem;
+  margin-right: -1rem;
+  padding-left: calc(1rem - 2px);
+  padding-right: 1rem;
+  width: calc(100% + 2rem);
+  display: inline-block;
 }
 
+/* Line numbers */
+code[data-line-numbers] {
+  counter-reset: line;
+}
+
+code[data-line-numbers] > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1rem;
+  margin-right: 2rem;
+  text-align: right;
+  color: var(--folder-text-light);
+}
+
+code[data-line-numbers-max-digits="2"] > [data-line]::before {
+  width: 1.5rem;
+}
+
+code[data-line-numbers-max-digits="3"] > [data-line]::before {
+  width: 2rem;
+}
+
+/* Word/character highlighting */
 pre > code [data-highlighted-chars] {
   @apply bg-gray-700/50 dark:bg-gray-300/20;
   padding: 0.25rem;
   border-radius: 0.25rem;
+}
+
+pre > code .word {
+  background-color: rgba(59, 130, 246, 0.2);
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.25rem;
 }
 
 /* Code block title */

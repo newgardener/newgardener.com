@@ -120,6 +120,119 @@ result = fibonacci(10)
 print(f"Result: {result}")
 ```
 
+### Code Blocks with Line Highlighting
+
+#### Highlighting Multiple Lines and Ranges
+
+```js {1-2,4,6}
+const a = 1;
+const b = 2;
+const c = 3;
+const d = 4;
+const e = 5;
+const f = 6;
+```
+
+#### Highlighting Single Line
+
+```typescript {3}
+function example() {
+  const greeting = "Hello";
+  console.log(greeting); // This line is highlighted
+  return greeting;
+}
+```
+
+#### Highlighting Multiple Ranges
+
+```javascript {1-3,5-7}
+// These lines are highlighted
+const firstName = "John";
+const lastName = "Doe";
+// This line is not highlighted
+// These lines are highlighted
+const fullName = `${firstName} ${lastName}`;
+console.log(fullName);
+```
+
+### Code Blocks with Line Numbers
+
+#### Basic Line Numbers
+
+```typescript showLineNumbers
+function calculateSum(a: number, b: number): number {
+  return a + b;
+}
+
+const result = calculateSum(5, 10);
+console.log(result);
+```
+
+#### Line Numbers Starting from Custom Number
+
+```javascript showLineNumbers{42}
+function deepThought() {
+  return 42; // The answer to life, universe, and everything
+}
+
+const answer = deepThought();
+```
+
+#### Line Numbers with Highlighting
+
+```typescript showLineNumbers {2,4-5}
+function processUser(user: User) {
+  const isValid = validateUser(user); // This line is highlighted
+  if (isValid) {
+    saveUser(user); // These lines are
+    notifyUser(user); // highlighted too
+  }
+  return isValid;
+}
+```
+
+### Word/Character Highlighting
+
+#### Highlighting Specific Words
+
+```javascript /useState/ /useEffect/
+import { useState, useEffect } from 'react';
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log('Count changed:', count);
+  }, [count]);
+}
+```
+
+#### Highlighting Multiple Instances
+
+```typescript /name/
+interface Person {
+  name: string;
+  age: number;
+}
+
+function greet(person: Person) {
+  console.log(`Hello, ${person.name}!`);
+  return person.name;
+}
+```
+
+#### Combining Line and Word Highlighting
+
+```javascript showLineNumbers {2,5} /console.log/
+function debugExample() {
+  console.log('Starting function'); // Line 2 highlighted
+  const data = fetchData();
+  processData(data);
+  console.log('Function complete'); // Line 5 highlighted
+  return data;
+}
+```
+
 ---
 
 ## Tables
@@ -218,6 +331,9 @@ This test page includes:
 - ✅ Ordered and unordered lists
 - ✅ Nested lists
 - ✅ Code blocks with syntax highlighting
+- ✅ Code blocks with line highlighting
+- ✅ Code blocks with line numbers
+- ✅ Code blocks with word/character highlighting
 - ✅ Inline code snippets
 - ✅ Tables (simple and complex)
 - ✅ Blockquotes
