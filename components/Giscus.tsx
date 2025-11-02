@@ -12,10 +12,7 @@ export function Giscus() {
   const theme = resolvedTheme === 'dark' ? 'dark_high_contrast' : 'light_high_contrast';
 
   useEffect(() => {
-    if (!ref.current) return;
-
-    // 경로가 바뀌면 이전 iframe 제거
-    ref.current.innerHTML = '';
+    if (!ref.current || ref.current.hasChildNodes()) return;
 
     const s = document.createElement('script');
     s.src = 'https://giscus.app/client.js';
@@ -35,6 +32,12 @@ export function Giscus() {
     s.setAttribute('data-lang', 'en');
 
     ref.current.appendChild(s);
+  }, [theme]);
+
+  // https://github.com/giscus/giscus/blob/main/ADVANCED-USAGE.md#isetconfigmessage
+  useEffect(() => {
+    const iframe = document.querySelector<HTMLIFrameElement>('iframe.giscus-frame');
+    iframe?.contentWindow?.postMessage({ giscus: { setConfig: { theme } } }, 'https://giscus.app');
   }, [theme]);
 
   return <section ref={ref} key={pathname} />;
