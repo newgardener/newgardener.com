@@ -68,38 +68,39 @@ export function FolderBlogLayout({ posts }: FolderBlogLayoutProps) {
                     className="relative transition-all duration-300"
                     style={{
                       zIndex: zIndex,
-                      transform: isSelected ? 'translateY(-6px)' : 'translateY(0)',
+                      transform: isSelected ? 'translateY(0)' : 'translateY(-8px)',
                     }}
                     type="button"
                   >
                     {/* Tab sticking up */}
                     <div
-                      className="relative overflow-hidden rounded-t-lg border-2 shadow-lg"
+                      className="relative overflow-hidden rounded-t-lg border-2"
                       style={{
                         width: '140px',
                         height: '60px',
                         backgroundColor: isSelected
-                          ? 'var(--folder-turquoise-dark)'
-                          : 'var(--folder-turquoise-light)',
+                          ? 'var(--folder-turquoise-light)'
+                          : 'var(--folder-turquoise-lighter)',
                         borderColor: isSelected
-                          ? 'var(--folder-turquoise-dark)'
-                          : 'var(--folder-turquoise-light)',
+                          ? 'var(--folder-turquoise-light)'
+                          : 'var(--folder-turquoise-lighter)',
+                        boxShadow: isSelected ? 'none' : '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
                       }}
                     >
                       {/* Number and category name - LEFT ALIGNED */}
                       <div className="absolute left-4 top-3 flex items-center gap-3">
                         <span
-                          className="text-2xl"
+                          className="text-2xl font-semibold"
                           style={{
-                            color: isSelected ? 'var(--folder-white)' : 'var(--folder-text-dark)',
+                            color: isSelected ? 'var(--folder-text-dark)' : 'var(--folder-text-medium)',
                           }}
                         >
                           {category.id}
                         </span>
                         <div
-                          className="text-sm"
+                          className="text-sm font-medium"
                           style={{
-                            color: isSelected ? 'var(--folder-white)' : 'var(--folder-text-dark)',
+                            color: isSelected ? 'var(--folder-text-dark)' : 'var(--folder-text-medium)',
                           }}
                         >
                           {category.name}
@@ -113,9 +114,7 @@ export function FolderBlogLayout({ posts }: FolderBlogLayoutProps) {
                             key={`tab-line-${category.id}-${i}`}
                             className="my-1 border-t opacity-30"
                             style={{
-                              borderColor: isSelected
-                                ? 'var(--folder-white)'
-                                : 'var(--folder-text-dark)',
+                              borderColor: 'var(--folder-text-dark)',
                             }}
                           />
                         ))}

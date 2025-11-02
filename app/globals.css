@@ -4,6 +4,7 @@
 :root {
   --folder-turquoise-light: #80b6c6;
   --folder-turquoise-dark: #5090aa;
+  --folder-turquoise-lighter: #b3d4dd;
   --folder-white: #ffffff;
   --folder-bg-light: #f6fcff;
   --folder-bg-dark: #5090aa;
@@ -19,6 +20,7 @@
 .dark {
   --folder-turquoise-light: #00608d;
   --folder-turquoise-dark: #00608d;
+  --folder-turquoise-lighter: #004666;
   --folder-white: #ffffff;
   --folder-bg-light: #00252f;
   --folder-bg-dark: #003757;
