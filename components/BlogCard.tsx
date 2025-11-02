@@ -71,7 +71,7 @@ export function BlogCard({ slug, title, description, date, tags, index }: BlogCa
 
         {/* Title with underline (handwritten style) */}
         <div className="relative mb-4 pb-3">
-          <h3 className="mb-2" style={{ color: 'var(--folder-text-dark)' }}>
+          <h3 className="mb-2 font-bold text-lg" style={{ color: 'var(--folder-text-dark)' }}>
             {title}
           </h3>
           {/* Hand-drawn underline */}
@@ -109,7 +109,7 @@ export function BlogCard({ slug, title, description, date, tags, index }: BlogCa
         <p
           className="mb-5 leading-relaxed"
           style={{
-            color: 'var(--folder-text-medium)',
+            color: 'var(--folder-text-dark)',
             fontFamily: 'system-ui, -apple-system, sans-serif',
           }}
         >
