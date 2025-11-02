@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { BlogCard } from '@/components/BlogCard';
+import { FilterChip } from '@/components/FilterChip';
 import { FountainPenDivider } from '@/components/FountainPenDivider';
 import { Pagination } from '@/components/Pagination';
 import type { PostMetadata } from '@/lib/getPostMetadata';
@@ -25,10 +26,20 @@ export function FolderBlogLayout({ posts }: FolderBlogLayoutProps) {
   ];
 
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const filteredPosts =
-    selectedCategory === 'All' ? posts : posts.filter((post) => post.category === selectedCategory);
+  // Filter by category first, then by tag if selected
+  let filteredPosts = selectedCategory === 'All' ? posts : posts.filter((post) => post.category === selectedCategory);
+
+  if (selectedTag) {
+    filteredPosts = filteredPosts.filter((post) => post.tags?.includes(selectedTag));
+  }
+
+  // Get unique tags from current filtered posts (by category)
+  const categoryFilteredPosts = selectedCategory === 'All' ? posts : posts.filter((post) => post.category === selectedCategory);
+  const allTags = categoryFilteredPosts.flatMap((post) => post.tags || []);
+  const uniqueTags = Array.from(new Set(allTags)).sort();
 
   // Calculate pagination
   const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
@@ -39,6 +50,16 @@ export function FolderBlogLayout({ posts }: FolderBlogLayoutProps) {
   // Reset to page 1 when category changes
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
+    setSelectedTag(null); // Reset tag filter when category changes
+    setCurrentPage(1);
+  };
+
+  const handleTagClick = (tag: string) => {
+    if (selectedTag === tag) {
+      setSelectedTag(null); // Deselect if clicking the same tag
+    } else {
+      setSelectedTag(tag);
+    }
     setCurrentPage(1);
   };
 
@@ -65,7 +86,7 @@ export function FolderBlogLayout({ posts }: FolderBlogLayoutProps) {
                   <button
                     key={category.id}
                     onClick={() => handleCategoryChange(category.name)}
-                    className="relative transition-all duration-300"
+                    className="relative cursor-pointer transition-all duration-300"
                     style={{
                       zIndex: zIndex,
                       transform: isSelected ? 'translateY(0)' : 'translateY(-8px)',
@@ -172,6 +193,38 @@ export function FolderBlogLayout({ posts }: FolderBlogLayoutProps) {
                     </span>
                   </div>
                 </div>
+
+                {/* Tag Filter Section */}
+                {uniqueTags.length > 0 && (
+                  <div className="mb-6 sm:mb-8">
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                      <span
+                        className="text-sm font-medium mr-2"
+                        style={{ color: 'var(--folder-text-medium)' }}
+                      >
+                        Filter by tag:
+                      </span>
+                      {uniqueTags.map((tag) => (
+                        <FilterChip
+                          key={tag}
+                          label={tag}
+                          isSelected={selectedTag === tag}
+                          onClick={() => handleTagClick(tag)}
+                        />
+                      ))}
+                      {selectedTag && (
+                        <button
+                          onClick={() => setSelectedTag(null)}
+                          className="cursor-pointer text-xs underline transition-colors hover:opacity-70"
+                          style={{ color: 'var(--folder-text-medium)' }}
+                          type="button"
+                        >
+                          Clear filter
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                )}
 
                 {/* Blog Posts Grid */}
                 <div className="grid grid-cols-1 gap-3 sm:gap-4 md:gap-6 md:grid-cols-2">

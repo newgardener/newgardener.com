@@ -5,7 +5,7 @@ interface MemoChipProps {
 export function MemoChip({ label }: MemoChipProps) {
   return (
     <span
-      className="inline-block px-3 py-1 rounded-full text-xs transition-all hover:scale-105"
+      className="inline-block px-3 py-1 rounded-full text-xs transition-all"
       style={{
         backgroundColor: 'var(--folder-bg-light)',
         color: 'var(--folder-turquoise-light)',

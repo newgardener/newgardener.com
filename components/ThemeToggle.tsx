@@ -35,7 +35,7 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="inline-flex items-center justify-center p-3 rounded-full shadow-lg transition-all hover:scale-110 z-50"
+      className="cursor-pointer inline-flex items-center justify-center p-3 rounded-full shadow-lg transition-all hover:scale-110 z-50"
       style={{
         backgroundColor: 'var(--folder-bg-dark)',
         color: 'var(--folder-white)',
